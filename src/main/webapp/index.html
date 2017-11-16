@@ -24,16 +24,15 @@
                 <br/>
             <input type="button" onclick="check(this.form)" value="Ingresar"/>
             <script language="javascript">
-                function check(form)/*function to check userid & password*/
+                function check(form)
                 {
-                    /*the following code checkes whether the entered userid and password are matching*/
                     if (form.userid.value === "fabian" && form.pswrd.value === "bases")
                     {
-                        window.open('inicio.jsp');/*opens the target page while Id & password matches*/
+                        window.open('inicio.jsp');
                     }
                     else
                     {
-                        alert("Error Password or Username");/*displays error message*/
+                        alert("Error de Usuario o Contraseña");
                     }
                 }
             </script>
