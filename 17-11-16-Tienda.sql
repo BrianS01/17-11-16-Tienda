@@ -14,7 +14,6 @@ create table producto
 (
 	idProducto int,
 	nombre varchar(45),
-    descripcion varchar(45),
     precio int,
     primary key(idProducto)
 );
