@@ -3,6 +3,7 @@
  *     Program ::: Bases de Datos
  *  Credential ::: SIST0008-G01:SIV
  */
+
 package controlador;
         
 import java.io.IOException;
@@ -18,8 +19,8 @@ import modelo.Producto;
 public class ProductoControlador extends HttpServlet
 {
     private static final long serialVersionUID = 1L;
-    private static String INSERT_OR_EDIT = "/user.jsp";
-    private static String LIST_USER = "/listUser.jsp";
+    private static String INSERT_OR_EDIT = "/producto.jsp";
+    private static String LIST_USER = "/listarProducto.jsp";
     private ProductoDAO dao;
 
     public ProductoControlador()
@@ -32,24 +33,25 @@ public class ProductoControlador extends HttpServlet
     {
         String forward = "";
         String action = request.getParameter("action");
+        
         if (action.equalsIgnoreCase("delete"))
         {
-            int userId = Integer.parseInt(request.getParameter("userId"));
+            int userId = Integer.parseInt(request.getParameter("idProducto"));
             dao.deleteUser(userId);
             forward = LIST_USER;
-            request.setAttribute("artista", dao.getAllUsers());
+            request.setAttribute("producto", dao.getAllUsers());
         }
         else if (action.equalsIgnoreCase("edit"))
         {
             forward = INSERT_OR_EDIT;
-            int userId = Integer.parseInt(request.getParameter("cedula"));
+            int userId = Integer.parseInt(request.getParameter("idProducto"));
             Producto user = dao.getUserById(userId);
             request.setAttribute("user", user);
         }
         else if (action.equalsIgnoreCase("listUser"))
         {
             forward = LIST_USER;
-            request.setAttribute("artista", dao.getAllUsers());
+            request.setAttribute("producto", dao.getAllUsers());
         }
         else
         {
@@ -64,22 +66,21 @@ public class ProductoControlador extends HttpServlet
     {
         Producto user = new Producto();
         user.setNombre(request.getParameter("nombre"));
-        String edad = request.getParameter("edad");
-        user.setObra(request.getParameter("obra"));
-        user.setEstilo(request.getParameter("estilo"));
-        String cedula = request.getParameter("cedula");
-        if (cedula == null || cedula.isEmpty())
+        String precio = request.getParameter("precio");
+        String idProducto = request.getParameter("idProducto");
+        
+        if (idProducto == null || idProducto.isEmpty())
         {
             dao.addUser(user);
         }
         else
         {
-            user.setCedula(Integer.parseInt(cedula));
+            user.setIdProducto(Integer.parseInt(idProducto));
             dao.updateUser(user);
         }
         
         RequestDispatcher view = request.getRequestDispatcher(LIST_USER);
-        request.setAttribute("users", dao.getAllUsers());
+        request.setAttribute("producto", dao.getAllUsers());
         view.forward(request, response);
     }
 }
