@@ -41,13 +41,13 @@ public class ProductoDAO
         }
     }
 
-    public void deleteUser(int cedula)
+    public void deleteUser(int idProducto)
     {
         try
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from artista where cedula=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from producto where idProducto=?");
             // Parameters start with 1
-            preparedStatement.setInt(1, cedula);
+            preparedStatement.setInt(1, idProducto);
             preparedStatement.executeUpdate();
         }
         catch (SQLException e)
@@ -80,6 +80,7 @@ public class ProductoDAO
             System.out.println("Llegue hasta aca");
             Statement statement = connection.createStatement();
             ResultSet rs = statement.executeQuery("select * from producto");
+            
             while (rs.next())
             {
                 Producto user = new Producto();
@@ -96,21 +97,19 @@ public class ProductoDAO
         return users;
     }
 
-    public Producto getUserById(int cedula)
+    public Producto getUserById(int idProducto)
     {
         Producto user = new Producto();
         try
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from artista where cedula=?");
-            preparedStatement.setInt(1, cedula);
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from producto where idProducto=?");
+            preparedStatement.setInt(1, idProducto);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next())
             {
-                user.setCedula(rs.getInt("cedula"));
-                user.setNombre(rs.getString("firstname"));
-                user.setEdad(rs.getInt("edad"));
-                user.setObra(rs.getString("obra"));
-                user.setEstilo(rs.getString("estilo"));
+                user.setIdProducto(rs.getInt("idProducto"));
+                user.setNombre(rs.getString("nombre"));
+                user.setPrecio(rs.getInt("precio"));
             }
         }
         catch (SQLException e)
