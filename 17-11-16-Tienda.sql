@@ -2,7 +2,7 @@ drop database if exists ImpasseMision;
 create database ImpasseMision;
 use ImpasseMision;
 
-create table empleados
+create table empleado
 (
 	idEmpleado int,
 	nombre varchar(45),
