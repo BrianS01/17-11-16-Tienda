@@ -40,13 +40,13 @@ public class EmpleadoDAO
         }
     }
 
-    public void deleteUser(int idProducto)
+    public void deleteUser(int idEmpleado)
     {
         try
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("delete from producto where idEmpleado=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("delete from empleado where idEmpleado=?");
             // Parameters start with 1
-            preparedStatement.setInt(1, idProducto);
+            preparedStatement.setInt(1, idEmpleado);
             preparedStatement.executeUpdate();
         }
         catch (SQLException e)
@@ -59,10 +59,9 @@ public class EmpleadoDAO
     {
         try 
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("update producto set idEmpleado=?, nombre=?, precio=?" + "where idProducto=?");
-            preparedStatement.setInt(1, user.getIdProducto());
+            PreparedStatement preparedStatement = connection.prepareStatement("update empleado set idEmpleado=?, nombre=?" + "where idEmpleado=?");
+            preparedStatement.setInt(1, user.getIdEmpleado());
             preparedStatement.setString(2, user.getNombre());
-            preparedStatement.setInt(3, user.getPrecio());
             preparedStatement.executeUpdate();
         }
         catch (SQLException e)
@@ -78,14 +77,13 @@ public class EmpleadoDAO
         {
             System.out.println("Llegue hasta aca");
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from producto");
+            ResultSet rs = statement.executeQuery("select * from empleado");
             
             while (rs.next())
             {
                 Empleado user = new Empleado();
-                user.setIdProducto(rs.getInt("idProducto"));
+                user.setIdEmpleado(rs.getInt("idEmpleado"));
                 user.setNombre(rs.getString("nombre"));
-                user.setPrecio(rs.getInt("precio"));
                 users.add(user);
             }
         }
@@ -101,14 +99,13 @@ public class EmpleadoDAO
         Empleado user = new Empleado();
         try
         {
-            PreparedStatement preparedStatement = connection.prepareStatement("select * from producto where idProducto=?");
+            PreparedStatement preparedStatement = connection.prepareStatement("select * from empleado where idEmpleado=?");
             preparedStatement.setInt(1, idProducto);
             ResultSet rs = preparedStatement.executeQuery();
             if (rs.next())
             {
-                user.setIdProducto(rs.getInt("idProducto"));
+                user.setIdEmpleado(rs.getInt("idEmpleado"));
                 user.setNombre(rs.getString("nombre"));
-                user.setPrecio(rs.getInt("precio"));
             }
         }
         catch (SQLException e)
