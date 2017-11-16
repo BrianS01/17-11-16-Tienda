@@ -10,30 +10,32 @@
         <title>hjhj</title>     
     </head>
     <body>
-        <h1 style="color:gray;">Usuario: fabian | Contraseña: bases</h1>
-        <h1>ENTRAR</h1>
-        <form name="login">
-            <label for="username">Nombre</label>
-            <br/>
-            <input type="text" name="userid"/>
-            <br/>
-            <label for="password">Contraseña</label>
-            <br/>
-            <input type="password" name="pswrd"/>
-            <br/>
+        <h1 style="color:gray; font-size:88%;">Usuario: fabian | Contraseña: bases</h1>
+        <center>
+            <h1>ENTRAR</h1>
+            <form name="login">
+                <label for="username">Nombre</label>
+                <br/>
+                <input type="text" name="userid"/>
+                <br/>
+                <label for="password">Contraseña</label>
+                <br/>
+                <input type="password" name="pswrd"/>
+                <br/>
             <input type="button" onclick="check(this.form)" value="Ingresar"/>
             <script language="javascript">
                 function check(form)/*function to check userid & password*/
                 {
-                        /*the following code checkes whether the entered userid and password are matching*/
-                        if (form.userid.value === "fabian" && form.pswrd.value === "bases")
-                        {
-                            window.open('inicio.jsp');/*opens the target page while Id & password matches*/
-                        } else
-                        {
-                            alert("Error Password or Username");/*displays error message*/
-                        }
-                    }
+                            /*the following code checkes whether the entered userid and password are matching*/
+                            if (form.userid.value === "fabian" && form.pswrd.value === "bases")
+                            {
+                                window.open('inicio.jsp');/*opens the target page while Id & password matches*/
+                            } else
+                            {
+                                alert("Error Password or Username");/*displays error message*/
+                            }
+                }
             </script>
+        </center>    
     </body>
 </html>
