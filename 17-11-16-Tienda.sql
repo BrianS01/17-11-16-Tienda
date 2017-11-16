@@ -23,6 +23,7 @@ create table detalle
 (
 	idDetalle int,
 	nombreCliente varchar(45),
+    cedula int,
     fecha varchar(45),
     primary key(idDetalle)
 );
