@@ -4,7 +4,7 @@ use ImpasseMision;
 
 create table empleados
 (
-	cedula int,
+	idEmpleado int,
 	nombre varchar(45),
     primary key(cedula)
 );
